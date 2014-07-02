@@ -4,7 +4,6 @@ if(isset($_REQUEST['status'])){
     header('Content-Type: application/json');
     
     $cache['user'] = $cache_user;
-    //sleep(1);
     echo json_encode($cache);
     die();
 }
@@ -25,7 +24,6 @@ if(isset($_REQUEST['clear'])){
 
 if(isset($_REQUEST['refresh_cache_file'])){
     header('Content-Type: application/json');
-    sleep(rand(2,8));
     apc_delete_file($_REQUEST['refresh_cache_file']);
     apc_compile_file($_REQUEST['refresh_cache_file']);
     
@@ -35,7 +33,6 @@ if(isset($_REQUEST['refresh_cache_file'])){
 
 if(isset($_REQUEST['remove_cache_file'])){
     header('Content-Type: application/json');
-    sleep(rand(2,8));
     if(apc_delete_file($_REQUEST['remove_cache_file'])){
         $status = 1;
     }else{
@@ -49,7 +46,6 @@ if(isset($_REQUEST['remove_cache_file'])){
 
 if(isset($_REQUEST['refresh_cache_folder'])){
     header('Content-Type: application/json');
-    sleep(rand(2,8));
     apc_delete_directory($_REQUEST['refresh_cache_folder']);
     apc_add_directory($_REQUEST['refresh_cache_folder']);
     
@@ -59,11 +55,24 @@ if(isset($_REQUEST['refresh_cache_folder'])){
 
 if(isset($_REQUEST['remove_cache_folder'])){
     header('Content-Type: application/json');
-    sleep(rand(2,8));
     if(apc_delete_directory($_REQUEST['remove_cache_folder'])){
         $status = 1;
     }else{
         $status = 0;
+    }
+    
+    echo json_encode(array('status'=>$status,'text'=>date('c')));
+    die();
+}
+
+
+if(isset($_REQUEST['add_cache_folder'])){
+    header('Content-Type: application/json');
+    
+    $status = 0;
+    
+    if(is_dir($_REQUEST['add_cache_folder']) && apc_add_directory($_REQUEST['add_cache_folder'])){
+        $status = 1;
     }
     
     echo json_encode(array('status'=>$status,'text'=>date('c')));

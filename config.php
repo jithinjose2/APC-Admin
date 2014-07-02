@@ -13,7 +13,11 @@
                 <tbody>
                     <?php
                     $i = 0;
-                    foreach (ini_get_all('apc') as $k => $v) {
+                    $configs = ini_get_all('apc');
+                    if(count($configs)==0){
+                        $configs = ini_get_all('apcu');
+                    }
+                    foreach ($configs as $k => $v) {
                         if($i%2==0){
                             echo '<tr>';
                         }

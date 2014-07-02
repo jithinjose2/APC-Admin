@@ -2,7 +2,7 @@
     <script>
         $(document).ready(function(){
             $("#about_link").click(function(){
-                $.ajax({url:'http://localhost/techzonemind/labz/apc-admin/apc.php?about_info=full'}).done(function(data){
+                $.ajax({url:'apc.php?about_info=full'}).done(function(data){
                     $("#apc_about").html(data);
                 })
             })

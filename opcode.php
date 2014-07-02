@@ -3,8 +3,8 @@
 $hits       = array();
 $missess    =  array();
 for($i=20; $i>=0; $i--){
-   $hits[] = "{x:ctime-".($i*1000).",y:".$cache['num_hits']."}";
-   $missess[] = "{x:ctime-".($i*1000).",y:".$cache['num_misses']."}";
+   $hits[] = "{x:ctime-".($i*1000).",y:".intval($cache['num_hits'])."}";
+   $missess[] = "{x:ctime-".($i*1000).",y:".intval($cache['num_misses'])."}";
 }
 
 ?>
@@ -83,7 +83,7 @@ for($i=20; $i>=0; $i--){
             var value  = $(this).attr("ajax");
             var clicked_btn = $(this);
             var btn_text = $(this).html();
-            $.getJSON('http://localhost/techzonemind/labz/apc-admin/apc.php?'+value,function(response){
+            $.getJSON('apc.php?'+value,function(response){
                 console.log(response);
                 if(response.status==1){
                     clicked_btn.html(response.text);
@@ -101,7 +101,7 @@ for($i=20; $i>=0; $i--){
             var clicked_btn = $(this);
             var btn_text = $(this).html();
             $(this).html('<img src="./img/489.GIF"/>');
-            $.getJSON('http://localhost/techzonemind/labz/apc-admin/apc.php?'+value,function(response){
+            $.getJSON('apc.php?'+value,function(response){
                 if(response.status==1){
                     clicked_btn.html('<span class="glyphicon glyphicon-ok-circle"></span>');
                     setInterval(function(){clicked_btn.html(btn_text);clicked_btn.removeAttr('disabled');},5000);
@@ -119,7 +119,7 @@ for($i=20; $i>=0; $i--){
             var clicked_btn = $(this);
             var btn_text = $(this).html();
             $(this).html('<img src="./img/489.GIF"/>');
-            $.getJSON('http://localhost/techzonemind/labz/apc-admin/apc.php?'+value,function(response){
+            $.getJSON('apc.php?'+value,function(response){
                 if(response.status==1){
                     clicked_btn.html('<span class="glyphicon glyphicon-ok-circle"></span>');
                     setInterval(function(){
@@ -135,7 +135,10 @@ for($i=20; $i>=0; $i--){
         });
         
         
-        
+        $("#add_directory").click(function(){
+            var dir = $("[name='add_directory']").val();
+            $(this).attr('disabled','disabled');
+        })
         
         
         
@@ -220,9 +223,9 @@ for($i=20; $i>=0; $i--){
                     </div>
                     <div class="col-md-8" style="padding-left: 0px">
                         <div class="input-group">
-                          <input type="text" class="form-control">
+                          <input type="text" class="form-control"  name="add_directory">
                           <span class="input-group-btn">
-                            <button class="btn btn-default" type="button">Add Directory</button>
+                            <button class="btn btn-default" type="button" id="add_directory">Add Directory</button>
                           </span>
                         </div><!-- /input-group -->
                     </div>

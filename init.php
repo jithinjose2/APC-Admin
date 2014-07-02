@@ -172,7 +172,41 @@ if(!function_exists('apc_cache_info') || !($cache=@apc_cache_info($cache_mode)))
   exit;
 }
 
-$cache_user = apc_cache_info('user');  
+
+if(isset($cache['nmisses'])){
+	$cache['num_misses'] = $cache['nmisses'];
+}
+
+
+$cache_user = apc_cache_info('user');
+
+// INFO FORMAT UPGRADE, IF NEEDED //
+
+if(!isset($cache_user['num_hits'])){
+	$cache_user['num_hits'] = 0;
+}
+
+if(!isset($cache_user['num_misses'])){
+	$cache_user['num_misses'] = 0;
+}
+
+
+foreach($cache_user['cache_list'] as $key=>$row){
+	if(!isset($row['type'])) $row['type'] = 'user';
+	if(!isset($row['info'])) $row['info'] = $row['key'];
+	if(!isset($row['num_hits'])) $row['num_hits'] = $row['nhits'];
+	if(!isset($row['creation_time'])) $row['creation_time'] = $row['ctime'];
+	if(!isset($row['access_time'])) $row['access_time'] = $row['atime'];
+	if(!isset($row['num_hits'])) $row['num_hits'] = $row['nhits'];
+	if(!isset($row['num_hits'])) $row['num_hits'] = $row['nhits'];
+	
+	$cache_user['cache_list'][$key] = $row;
+}
+
+// INFO FORMAT UPGRADE,COMPLETE //
+
+
+
 $mem=apc_sma_info();
 if(!$cache['num_hits']) { $cache['num_hits']=1; $time++; }  // Avoid division by 0 errors on a cache clear
 

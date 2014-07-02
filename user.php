@@ -4,8 +4,8 @@ $hits       = array();
 $missess    = array();
 
 for($i=20; $i>=0; $i--){
-   $hits[] = "{x:ctime-".($i*1000).",y:".$cache_user['num_hits']."}";
-   $missess[] = "{x:ctime-".($i*1000).",y:".$cache_user['num_misses']."}";
+   $hits[] = "{x:ctime-".($i*1000).",y:".intval($cache_user['num_hits'])."}";
+   $missess[] = "{x:ctime-".($i*1000).",y:".intval($cache_user['num_misses'])."}";
 }
 
 ?>
@@ -107,7 +107,7 @@ for($i=20; $i>=0; $i--){
             
             $(this).attr('disabled','disabled');
             $(this).html('<img src="./img/489.GIF"/> Please wait');
-            $.getJSON('http://localhost/techzonemind/labz/apc-admin/apc.php?setvariable=' + encodeURI(name) + '&ttl=' + encodeURI(ttl) + value,function(data){
+            $.getJSON('apc.php?setvariable=' + encodeURI(name) + '&ttl=' + encodeURI(ttl) + value,function(data){
                 $("#myModal").modal('hide');
                 $("#save_variable").removeAttr('disabled');
                 $("#save_variable").html('Save changes');
@@ -163,7 +163,7 @@ for($i=20; $i>=0; $i--){
         
         <div class="panel panel-info" style="clear: both">
             <div class="panel-heading">
-                <h3 class="panel-title">File Cache For Each Files</h3>
+                <h3 class="panel-title">User Variabled in Cache</h3>
             </div>
             <div class="panel-body" style="padding: 0px">
                 <?php
@@ -191,7 +191,7 @@ for($i=20; $i>=0; $i--){
                     <tbody>
                         <?php
                         foreach($cache_user['cache_list'] as $row){
-                            if($row['type']=='user'){
+                            if((isset($row['type']) && $row['type']=='user') || !isset($row['type'])){
                                 ?>
                                 <tr>
                                     <td>
