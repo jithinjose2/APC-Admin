@@ -190,6 +190,9 @@ if(!isset($cache_user['num_misses'])){
 	$cache_user['num_misses'] = 0;
 }
 
+if(!isset($cache['start_time'])){
+	$cache['start_time'] = $cache['stime'];
+}
 
 foreach($cache_user['cache_list'] as $key=>$row){
 	if(!isset($row['type'])) $row['type'] = 'user';

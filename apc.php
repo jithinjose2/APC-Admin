@@ -194,7 +194,9 @@ if(!isset($cache_user['num_hits'])){
 if(!isset($cache_user['num_misses'])){
 	$cache_user['num_misses'] = 0;
 }
-
+if(!isset($cache['start_time'])){
+	$cache['start_time'] = $cache['stime'];
+}
 
 foreach($cache_user['cache_list'] as $key=>$row){
 	if(!isset($row['type'])) $row['type'] = 'user';
@@ -839,7 +841,7 @@ function displayVar($var){
 		<div  class="container">
 			
 			<ul class="nav nav-tabs nav-tabs-google">
-				<li class="active"><a href="#status" data-toggle="tab">Status</a></li>
+				<li class="active"><a href="#status" data-toggle="tab"><b>APC Admin</b></a></li>
 				<li class="dropdown">
 					<a href="#" id="opcode-drop" class="dropdown-toggle" data-toggle="dropdown">Opcode Cache <b class="caret"></b></a>
 					<ul class="dropdown-menu" role="menu" aria-labelledby="opcode-drop">
@@ -864,6 +866,14 @@ function displayVar($var){
 			<div class="tab-content" style="padding-top: 20px">
 		
 				<div class="tab-pane active" id="status">
+					
+					<?php if(count(ini_get_all('apc'))==0 && count(ini_get_all('apcu'))>0){ ?>
+						<div class="alert alert-warning" role="alert">
+							You are running APCu instead of APC, some options will not work properly
+						</div>
+					<?php } ?>
+					
+					
 					<div class="col-md-6" style="padding-left: 0px">
     
 						<div class="panel panel-info">

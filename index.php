@@ -85,7 +85,7 @@ include "api.php";
 		<div  class="container">
 			
 			<ul class="nav nav-tabs nav-tabs-google">
-				<li class="active"><a href="#status" data-toggle="tab">Status</a></li>
+				<li class="active"><a href="#status" data-toggle="tab"><b>APC Admin</b></a></li>
 				<li class="dropdown">
 					<a href="#" id="opcode-drop" class="dropdown-toggle" data-toggle="dropdown">Opcode Cache <b class="caret"></b></a>
 					<ul class="dropdown-menu" role="menu" aria-labelledby="opcode-drop">

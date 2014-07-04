@@ -31,6 +31,12 @@
 </div>
 
 <div class="col-md-6" style="padding-left: 0px">
+    <?php if(count(ini_get_all('apc'))==0 && count(ini_get_all('apcu'))>0){ ?>
+            <div class="alert alert-warning" role="alert">
+                    You are running APCu instead of APC, some options will not work properly
+            </div>
+    <?php } ?>
+                                        
     <div class="panel panel-info">
         <div class="panel-heading">
             <h3 class="panel-title">Memory allocation and usage</h3>
