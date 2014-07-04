@@ -188,11 +188,11 @@ $cache_user = apc_cache_info('user');
 // INFO FORMAT UPGRADE, IF NEEDED //
 
 if(!isset($cache_user['num_hits'])){
-	$cache_user['num_hits'] = 0;
+	$cache_user['num_hits'] = $cache_user['nhits'];
 }
 
 if(!isset($cache_user['num_misses'])){
-	$cache_user['num_misses'] = 0;
+	$cache_user['num_misses'] = $cache_user['nmisses'];
 }
 if(!isset($cache['start_time'])){
 	$cache['start_time'] = $cache['stime'];
