@@ -1234,7 +1234,7 @@ for($i=20; $i>=0; $i--){
                             foreach($list as $entry) {
                                 echo
                                     '<tr>',
-                                    "<td>",$entry[0],'</a></td>',
+                                    "<td>",$entry[0],'</td>',
                                     '<td>',$entry[1],'</td>',
                                     '<td>',$entry[2],'</td>',
                                     '<td>',$entry[3],'</td>',
@@ -1274,13 +1274,13 @@ for($i=20; $i>=0; $i--){
                 <table cellspacing=0 class="table table-striped sorter">
                     <thead>
                         <tr>
-                            <th>File</td>
-                            <th>Hits</td>
-                            <th>Size</td>
-                            <th>Created</td>
-                            <th>Modified</td>
-                            <th>Last Accessed</td>
-                            <th>Options</td>
+                            <th>File</th>
+                            <th>Hits</th>
+                            <th>Size</th>
+                            <th>Created</th>
+                            <th>Modified</th>
+                            <th>Last Accessed</th>
+                            <th>Options</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -1504,13 +1504,13 @@ for($i=20; $i>=0; $i--){
                 <table cellspacing=0 class="table table-striped sorter">
                     <thead>
                         <tr>
-                            <th>Variable</td>
-                            <th>Hits</td>
-                            <th>Size</td>
-                            <th>Created</td>
-                            <th>Modified</td>
-                            <th>Last Accessed</td>
-                            <th>Options</td>
+                            <th>Variable</th>
+                            <th>Hits</th>
+                            <th>Size</th>
+                            <th>Created</th>
+                            <th>Modified</th>
+                            <th>Last Accessed</th>
+                            <th>Options</th>
                         </tr>
                     </thead>
                     <tbody>
