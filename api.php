@@ -194,20 +194,22 @@ function apc_delete_directory($dir,$cache=false){
 function displayVar($var){
 	switch(gettype($var)){
 		case 'array':
-			print_r($var);
+			$result = print_r($var, true);
 			break;
 		case 'string':
 			json_decode($var);
 			if(json_last_error() == JSON_ERROR_NONE){
-				print_r(json_decode($var));
+				$result = print_r(json_decode($var), true);
 			}elseif($arr = @unserialize($var)){
-				print_r($arr);
+				$result = print_r($arr, true);
 			} else {
-				echo $var;
+				$result = $var;
 			}
 			break;
 		default:
-			echo $var;
+			$result = (string)$var;
 			break;
 	}
+
+	echo htmlentities($result);
 }
